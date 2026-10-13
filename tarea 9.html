@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tarea 9</title>
+</head>
+<body>
+
+  <form action="#" method="post">
+    
+    <fieldset>
+      <legend>Registro para nuevos miembros</legend>
+
+      <p>
+        <label for="ciudad">¿En qué ciudad te encuentras?</label><br>
+        <input 
+          type="text" 
+          id="ciudad" 
+          name="ciudad" 
+          list="ciudades-populares" 
+          placeholder="Escribe o selecciona tu ciudad..."
+        >
+        
+        <datalist id="ciudades-populares">
+          <option value="Maracaibo"></option>
+          <option value="San Francisco"></option>
+          <option value="Caracas"></option>
+          <option value="Valencia"></option>
+          <option value="San Cristobal"></option>
+          <option value="Maracay"></option>
+        </datalist>
+      </p>
+
+      <p>
+        <label for="rol">¿Cuál es tu área de interés principal?</label><br>
+        <select id="rol" name="rol">
+          <option value="" disabled selected>Selecciona una opción...</option>
+          <option value="frontend">Desarrollo de paginas web</option>
+          <option value="backend">Telecomunicaciones</option>
+          <option value="fullstack">Programacion</option>
+          <option value="ui-ux">Diseño Grafico</option>
+          <option value="datos">Marketing Digital</option>
+        </select>
+      </p>
+
+      <p>
+        <label for="biografia">Unas palabras sobre ti:</label><br>
+        <textarea 
+          id="biografia" 
+          name="biografia" 
+          rows="4" 
+          cols="40" 
+          placeholder="Cuéntanos en qué proyectos trabajas o qué te gustaría aprender..."
+        ></textarea>
+      </p>
+
+      <button type="submit">Enviar registro</button>
+
+    </fieldset>
+
+  </form>
+
+</body>
+</html>

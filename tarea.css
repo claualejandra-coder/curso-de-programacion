@@ -1,0 +1,39 @@
+.caja-ejemplo {
+
+  width: 300px;
+  background-color: #f0f4f8;
+
+  padding: 20px;
+  border: 2px solid #0056b3;
+
+  margin: 40px auto;
+
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+}
+
+
+.tarjeta {
+  width: 320px;
+  padding: 28px;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  border-radius: 16px;
+
+  background-image: linear-gradient(135deg, #4f46e5, #7c3aed);
+
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.35);
+}
+
+.tarjeta h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+}
+
+.tarjeta p {
+  margin: 0;
+  line-height: 1.5;
+  opacity: 0.9;
+}
