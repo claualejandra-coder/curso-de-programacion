@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Adicional 8</title>
+</head>
+<body>
+
+  <form action="/procesar-datos" method="POST">
+
+
+    <fieldset>
+      <legend>Selección Única: Nivel de Experiencia</legend>
+      
+      <input type="radio" id="principiante" name="nivel" value="principiante">
+      <label for="principiante">Principiante</label><br>
+
+      <input type="radio" id="intermedio" name="nivel" value="intermedio">
+      <label for="intermedio">Intermedio</label><br>
+
+      <input type="radio" id="avanzado" name="nivel" value="avanzado">
+      <label for="avanzado">Avanzado</label>
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+      <legend>Selección Múltiple: Lenguajes de Interés</legend>
+
+      <input type="checkbox" id="html" name="lenguajes" value="html">
+      <label for="html">HTML</label><br>
+
+      <input type="checkbox" id="css" name="lenguajes" value="css">
+      <label for="css">CSS</label><br>
+
+      <input type="checkbox" id="js" name="lenguajes" value="javascript">
+      <label for="js">JavaScript</label>
+    </fieldset>
+
+    <br>
+
+    <label for="pais">País de Residencia:</label>
+    <select id="pais" name="pais">
+      <option value="ar">Argentina</option>
+      <option value="cl">Chile</option>
+      <option value="ve" selected>Venezuela</option> 
+      <option value="mx">México</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Enviar</button>
+
+  </form>
+
+</body>
+</html>
