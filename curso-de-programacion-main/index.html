@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PokéMart Silph Co. - La tienda y enciclopedia definitiva de artículos de Pokémon. Poké Balls, Pociones, Piedras evolutivas y objetos de combate.">
+  <title>PokéMart Silph Co. | Artículos & Tienda Pokémon Oficial</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23ff3b44'/><path d='M2,50 A48,48 0 0,0 98,50 Z' fill='%23ffffff'/><rect y='45' width='100' height='10' fill='%231a1a24'/><circle cx='50' cy='50' r='18' fill='%23ffffff' stroke='%231a1a24' stroke-width='8'/><circle cx='50' cy='50' r='6' fill='%231a1a24'/></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ======================================================================
+       BARRA DE NAVEGACIÓN SUPERIOR
+       ====================================================================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#inicio" class="brand" title="PokéMart Silph Co.">
+        <div class="brand-icon-wrap" aria-hidden="true"></div>
+        <div class="brand-text">
+          <h1>PokéMart <span>Silph Co.</span></h1>
+        </div>
+      </a>
+
+      <nav class="nav-center" aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li><a href="#inicio" class="active">Inicio</a></li>
+          <li><a href="#catalogo">Artículos</a></li>
+          <li><a href="#guia">Guía de Objetos</a></li>
+          <li><a href="#promo">Ofertas</a></li>
+          <li><a href="hollow.html" style="color: var(--poke-cyan); font-weight: 700;">✧ Hollow Knight</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Billetera del Entrenador -->
+        <div class="wallet-badge" id="wallet-badge" title="Tus Poké-dólares. ¡Haz clic para recibir un bono de la Liga!">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5h-2v-1.12c-1.39-.28-2.5-1.33-2.5-2.88 0-1.84 1.54-2.5 3-2.88v-2.3c-.69.17-1 .61-1 1.18h-2c0-1.39 1-2.5 2-2.88V4.5h2v1.12c1.39.28 2.5 1.33 2.5 2.88 0 1.84-1.54 2.5-3 2.88v2.3c.69-.17 1-.61 1-1.18h2c0 1.39-1 2.5-2 2.88v1.12z"/></svg>
+          <span id="trainer-balance">₽ 50,000</span>
+          <span style="font-size:0.75rem; background: rgba(255,255,255,0.15); border-radius:50%; width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center;">+</span>
+        </div>
+
+        <!-- Botón Silenciar / Activar Sonido 8-bit -->
+        <button class="btn-icon" id="sound-toggle-btn" title="Alternar Sonidos 8-Bit" aria-label="Alternar sonidos">
+          <span id="sound-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          </span>
+        </button>
+
+        <!-- Botón Mochila (Carrito) -->
+        <button class="btn-backpack" id="btn-backpack-nav" aria-label="Abrir mochila">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span>Mochila</span>
+          <span class="backpack-count" id="backpack-badge" style="display: none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         HERO SECTION (BANNER PRINCIPAL)
+         ====================================================================== -->
+    <section class="hero" id="inicio">
+      <div class="hero-card">
+        <img 
+          src="img/hero-pokemart.jpg" 
+          alt="Interior moderno de la tienda PokéMart Silph Co." 
+          class="hero-bg-img"
+        />
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+          <div class="hero-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            Proveedor Oficial de la Liga Pokémon
+          </div>
+          <h2 class="hero-title">
+            Equípate con los Mejores <span class="highlight">Artículos Pokémon</span>
+          </h2>
+          <p class="hero-desc">
+            Desde Poké Balls de precisión y elíxires de recuperación hasta piedras evolutivas elementales y objetos de combate competitivo de última generación. Todo lo que tu equipo necesita para alcanzar la cima.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#catalogo" class="btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              Explorar Catálogo
+            </a>
+            <a href="#guia" class="btn-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+              Guía del Entrenador
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Píldoras de beneficios de Silph Co. -->
+      <div class="hero-features">
+        <div class="feature-pill">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-text">
+            <h4>Envío Dragonite Express</h4>
+            <p>Entrega inmediata en cualquier Centro Pokémon de la región.</p>
+          </div>
+        </div>
+
+        <div class="feature-pill">
+          <div class="feature-icon">🛡️</div>
+          <div class="feature-text">
+            <h4>Garantía Silph Co.</h4>
+            <p>100% de pureza en pociones y efectividad certificada.</p>
+          </div>
+        </div>
+
+        <div class="feature-pill">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-text">
+            <h4>Descuento de la Liga</h4>
+            <p>10% OFF en compras mayores a 15,000 Poké-dólares.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CONTROLES, BUSCADOR Y FILTROS POR CATEGORÍA
+         ====================================================================== -->
+    <section class="controls-section" id="catalogo">
+      <div class="controls-wrapper">
+        <div class="search-and-sort">
+          <!-- Campo de Búsqueda -->
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input 
+              type="text" 
+              id="search-input" 
+              class="search-input" 
+              placeholder="Buscar por artículo, efecto o función (ej: Ultra Ball, Poción, Eevee)..."
+              autocomplete="off"
+            />
+            <button class="clear-search-btn" id="clear-search" title="Limpiar búsqueda">✕</button>
+          </div>
+
+          <!-- Selector de Ordenamiento -->
+          <div class="sort-group">
+            <label for="sort-select" class="sort-label">Ordenar:</label>
+            <select id="sort-select" class="sort-select">
+              <option value="popular">Más Populares</option>
+              <option value="price-asc">Precio: Menor a Mayor</option>
+              <option value="price-desc">Precio: Mayor a Menor</option>
+              <option value="name-asc">Nombre: A - Z</option>
+              <option value="rarity">Rareza Máxima</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Categorías en Píldoras -->
+        <nav class="categories-tabs" aria-label="Filtro por categorías de artículos">
+          <button class="tab-btn active" data-category="all">
+            🌟 Todos <span class="badge-count">26</span>
+          </button>
+          <button class="tab-btn" data-category="pokeballs">
+            🔴 Poké Balls <span class="badge-count">6</span>
+          </button>
+          <button class="tab-btn" data-category="medicina">
+            🧪 Medicina & Curación <span class="badge-count">7</span>
+          </button>
+          <button class="tab-btn" data-category="evolucion">
+            💎 Piedras Evolutivas <span class="badge-count">5</span>
+          </button>
+          <button class="tab-btn" data-category="combate">
+            ⚔️ Objetos de Combate <span class="badge-count">6</span>
+          </button>
+          <button class="tab-btn" data-category="bayas">
+            🍓 Bayas & Vitaminas <span class="badge-count">3</span>
+          </button>
+          <button class="tab-btn" data-category="clave">
+            🗺️ Objetos Clave <span class="badge-count">4</span>
+          </button>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CATÁLOGO DE ARTÍCULOS (GRID INTERACTIVO)
+         ====================================================================== -->
+    <section class="catalog-section">
+      <div class="catalog-header">
+        <h2 class="catalog-title">
+          <span>📦</span> Catálogo de Suministros
+        </h2>
+        <span class="catalog-count" id="catalog-count">Cargando suministros...</span>
+      </div>
+
+      <!-- Cuadrícula inyectada por app.js -->
+      <div class="items-grid" id="items-grid"></div>
+    </section>
+
+    <!-- ======================================================================
+         BANNER PROMOCIONAL: LOTE DE CAMPEÓN
+         ====================================================================== -->
+    <section class="controls-section" id="promo">
+      <div class="controls-wrapper" style="background: linear-gradient(135deg, rgba(255, 59, 68, 0.15), rgba(42, 117, 187, 0.15)); border-color: rgba(255, 203, 5, 0.3);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+          <div style="max-width: 600px;">
+            <span style="color: var(--poke-yellow); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">⚡ Promoción Exclusiva de Temporada</span>
+            <h3 style="font-size: 1.6rem; font-weight: 800; margin: 0.3rem 0; color: #fff;">Pack del Aspirante a Campeón</h3>
+            <p style="color: #cbd5e1; font-size: 0.95rem;">Incluye 10 Ultra Balls, 5 Max Revivir, 5 Pociones Máximas y 1 Restos con 15% de ahorro garantizado para desafiar al Alto Mando.</p>
+          </div>
+          <button class="btn-primary" onclick="addToCart('ultra-ball', 5); addToCart('max-revive', 2); addToCart('max-potion', 2); addToCart('leftovers', 1);" style="white-space: nowrap;">
+            🎒 Añadir Pack a la Mochila
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         GUÍA DEL ENTRENADOR (ARTÍCULOS EDUCATIVOS Y ESTRATEGIA)
+         ====================================================================== -->
+    <section class="guide-section" id="guia">
+      <div class="guide-header">
+        <h2>Manual del Entrenador Pokémon</h2>
+        <p>Aprende a sacar el máximo provecho de tus artículos en batallas de gimnasio y expediciones salvajes.</p>
+      </div>
+
+      <div class="guide-grid">
+        <article class="guide-card">
+          <span class="guide-badge">Tácticas de Captura</span>
+          <h3>¿Cómo maximizar el ratio de captura?</h3>
+          <p>
+            El éxito al atrapar un Pokémon depende de tres factores cruciales: la barra de vida residual (cuanto más cerca del 1 PS esté, mayor probabilidad), el tipo de Poké Ball seleccionada según la situación (Veloz Ball en turno 1, Buceo Ball en mares), y el estado alterado del Pokémon rival.
+          </p>
+          <div class="guide-tip">
+            💡 <strong>Consejo Pro:</strong> Los estados de <em>Sueño</em> y <em>Congelamiento</em> multiplican la tasa de captura por <strong>x2.5</strong>, superando con creces a la parálisis o el veneno (x1.5).
+          </div>
+        </article>
+
+        <article class="guide-card">
+          <span class="guide-badge">Metamorfosis & Evolución</span>
+          <h3>El dilema de las Piedras Evolutivas</h3>
+          <p>
+            Al evolucionar un Pokémon con una Piedra Evolutiva (como Eevee, Growlithe o Staryu), este obtiene un aumento masivo e inmediato en sus estadísticas base, pero en muchos casos deja de aprender sus movimientos naturales por subida de nivel.
+          </p>
+          <div class="guide-tip">
+            💡 <strong>Consejo Pro:</strong> Espera a que tu Pokémon aprenda sus movimientos clave más potentes antes de exponerlo a la radiación de una Piedra Fuego o Trueno.
+          </div>
+        </article>
+
+        <article class="guide-card">
+          <span class="guide-badge">Combate Competitivo</span>
+          <h3>Tríada de Objetos Competitivos</h3>
+          <p>
+            En la Liga Pokémon y torneos VGC, los objetos equipados definen la victoria: <strong>Restos</strong> mantiene vivos a los muros defensivos, <strong>Banda Focus</strong> garantiza un contraataque a los atacantes de papel, y los <strong>Objetos Elegidos</strong> ofrecen una potencia ofensiva destructiva.
+          </p>
+          <div class="guide-tip">
+            💡 <strong>Consejo Pro:</strong> Recuerda que los objetos de la serie "Elegido" (Cinta, Gafas, Pañuelo) no permiten cambiar de movimiento hasta ser retirado del campo.
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       PIE DE PÁGINA (FOOTER)
+       ====================================================================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h2>PokéMart Silph Co.™</h2>
+          <p>
+            La cadena de tiendas y suministros para entrenadores Pokémon más prestigiosa del mundo. Con tecnología desarrollada en los laboratorios de Ciudad Azafrán.
+          </p>
+          <div style="margin-top: 1rem; display: flex; gap: 0.75rem;">
+            <span style="font-size: 1.4rem;">🔴</span>
+            <span style="font-size: 1.4rem;">⚡</span>
+            <span style="font-size: 1.4rem;">💧</span>
+            <span style="font-size: 1.4rem;">🌿</span>
+            <span style="font-size: 1.4rem;">✨</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Categorías</h3>
+          <ul>
+            <li><a href="#catalogo" onclick="setCategory('pokeballs')">Poké Balls</a></li>
+            <li><a href="#catalogo" onclick="setCategory('medicina')">Pociones & Curación</a></li>
+            <li><a href="#catalogo" onclick="setCategory('evolucion')">Piedras Evolutivas</a></li>
+            <li><a href="#catalogo" onclick="setCategory('combate')">Objetos de Combate</a></li>
+            <li><a href="#catalogo" onclick="setCategory('bayas')">Bayas & Vitaminas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Sucursales</h3>
+          <ul>
+            <li><a href="#">Ciudad Azafrán (Central)</a></li>
+            <li><a href="#">Ciudad Trigal (Johto)</a></li>
+            <li><a href="#">Ciudad Calagua (Hoenn)</a></li>
+            <li><a href="#">Ciudad Corazón (Sinnoh)</a></li>
+            <li><a href="#">Ciudad Luminalia (Kalos)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Proyecto</h3>
+          <ul>
+            <li><a href="#">Curso de Programación Web</a></li>
+            <li><a href="#">HTML5 Semántico</a></li>
+            <li><a href="#">Vanilla CSS3 Moderno</a></li>
+            <li><a href="#">JavaScript ES6+ & Web Audio</a></li>
+            <li><a href="#">API PokeAPI Sprites</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 PokéMart Silph Co. - Hecho con dedicación para el curso de programación.</p>
+        <p style="color: var(--text-dim);">Pokémon y Nintendo son marcas registradas de Nintendo, Creatures y Game Freak.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       DRAWER / PANEL LATERAL DE LA MOCHILA (CARRITO DE COMPRAS)
+       ====================================================================== -->
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Mochila del entrenador">
+    <div class="cart-header">
+      <div class="cart-header-title">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <h2>Mochila del Entrenador</h2>
+      </div>
+      <button class="btn-close-cart" id="btn-close-cart" aria-label="Cerrar mochila">✕</button>
+    </div>
+
+    <!-- Lista interactiva de artículos en la mochila -->
+    <div class="cart-items-list" id="cart-items-list"></div>
+
+    <div class="cart-footer">
+      <div class="cart-summary-line">
+        <span>Subtotal de artículos:</span>
+        <span id="cart-subtotal">₽ 0</span>
+      </div>
+      <div class="cart-summary-line" style="color: var(--poke-cyan);">
+        <span>Descuento de la Liga (10% si > ₽ 15,000):</span>
+        <span id="cart-discount">- ₽ 0</span>
+      </div>
+      <div class="cart-total-line">
+        <span>Total a Pagar:</span>
+        <span class="cart-total-price" id="cart-total">₽ 0</span>
+      </div>
+
+      <div class="cart-actions-drawer">
+        <button class="btn-checkout" id="btn-checkout">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"></path></svg>
+          Comprar Artículos
+        </button>
+        <button class="btn-clear-cart" id="btn-clear-cart">
+          Vaciar Mochila
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ======================================================================
+       MODAL DE DETALLES DEL ARTÍCULO
+       ====================================================================== -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal-content" id="item-modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modal-close" aria-label="Cerrar ventana">✕</button>
+
+      <div class="modal-header">
+        <div class="modal-sprite-wrap">
+          <img id="modal-sprite" src="" alt="Sprite del artículo" class="modal-sprite" />
+        </div>
+        <div class="modal-title">
+          <h2 id="modal-title">Nombre del Artículo</h2>
+          <span class="category-tag" id="modal-category">CATEGORÍA</span>
+        </div>
+      </div>
+
+      <div class="modal-info-grid">
+        <div class="modal-info-item">
+          <div class="modal-info-label">Rareza</div>
+          <div class="modal-info-val" id="modal-rarity">-</div>
+        </div>
+        <div class="modal-info-item">
+          <div class="modal-info-label">Origen</div>
+          <div class="modal-info-val" id="modal-generation">-</div>
+        </div>
+        <div class="modal-info-item" style="grid-column: 1 / -1;">
+          <div class="modal-info-label">Efecto Principal</div>
+          <div class="modal-info-val" id="modal-effect" style="color: var(--poke-cyan);">-</div>
+        </div>
+      </div>
+
+      <div class="modal-description-box">
+        <h4>Descripción Oficial Silph Co.</h4>
+        <p id="modal-desc">-</p>
+      </div>
+
+      <div class="guide-tip" style="margin-bottom: 1.5rem;">
+        💡 <strong>Consejo del Entrenador:</strong> <span id="modal-tips">-</span>
+      </div>
+
+      <div class="modal-footer">
+        <div class="modal-price-big" id="modal-price">₽ 0</div>
+        <button class="btn-primary" id="modal-add-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          Añadir a la Mochila
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor de Alertas Toast Flotantes -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Canvas de Confetti para Celebración de Compra -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Script Principal -->
+  <script src="app.js"></script>
+</body>
+</html>

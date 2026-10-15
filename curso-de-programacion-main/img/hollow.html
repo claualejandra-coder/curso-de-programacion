@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hollow Knight: Crónicas de Hallownest - Enciclopedia interactiva, simulador de amuletos (11 muescas), personajes, jefes y regiones del legendario reino subterráneo.">
+  <title>Hollow Knight | Crónicas de Hallownest</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%2305070c' stroke='%237fe7f7' stroke-width='4'/><path d='M30 40 Q50 20 70 40 Q50 75 30 40 Z' fill='%237fe7f7'/><circle cx='42' cy='42' r='4' fill='%2305070c'/><circle cx='58' cy='42' r='4' fill='%2305070c'/></svg>">
+  <link rel="stylesheet" href="../hollow.css">
+</head>
+<body>
+
+  <!-- ======================================================================
+       NAVBAR SUPERIOR GÓTICA
+       ====================================================================== -->
+  <header class="hk-navbar">
+    <div class="hk-nav-container">
+      <a href="#inicio" class="hk-brand">
+        <div class="hk-brand-seal" aria-hidden="true">
+          <span style="font-size: 1.1rem; color: #7fe7f7;">✧</span>
+        </div>
+        <div class="hk-brand-text">
+          <h1>Hollow Knight</h1>
+          <span>Crónicas de Hallownest</span>
+        </div>
+      </a>
+
+      <nav class="hk-nav-links" aria-label="Navegación del reino">
+        <a href="#inicio" class="active">Inicio</a>
+        <a href="#amuletos">Amuletos (Builder)</a>
+        <a href="#personajes">Personajes</a>
+        <a href="#jefes">Jefes</a>
+        <a href="#regiones">Regiones</a>
+        <a href="#silksong">Silksong</a>
+      </nav>
+
+      <div class="hk-hud-actions">
+        <!-- Recipiente de Alma Interactivo -->
+        <div class="soul-vessel" id="soul-vessel" title="¡Haz clic para canalizar y enfocar Alma!">
+          <div class="soul-meter-orb"></div>
+          <span class="soul-vessel-text">Alma Llena</span>
+        </div>
+
+        <!-- Contador de Geo Interactivo -->
+        <div class="geo-counter" id="geo-counter" title="¡Haz clic para recoger Geo de las cavernas!">
+          <span class="geo-icon">🪙</span>
+          <span id="geo-val">2,450</span>
+          <span style="color: #cbd5e1; font-size: 0.75rem;">Geo</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         HERO SECTION (CIUDAD DE LÁGRIMAS)
+         ====================================================================== -->
+    <section class="hk-hero" id="inicio">
+      <div class="hk-hero-card">
+        <img 
+          src="hero-hollow.jpg" 
+          alt="El Caballero observando la Ciudad de Lágrimas bajo la lluvia" 
+          class="hk-hero-bg"
+        />
+        <div class="hk-hero-overlay"></div>
+
+        <div class="hk-hero-content">
+          <div class="hk-quote-pill">
+            <span>✧</span> Reino Olvidado bajo Tierra de Nadie
+          </div>
+          <h2 class="hk-hero-title">
+            Desciende a las <span class="glow-cyan">Profundidades</span>
+          </h2>
+          <p class="hk-hero-desc">
+            Bajo la marchita aldea de Bocasucia duerme Hallownest, un colosal reino subterráneo de insectos y héroes arruinado por una misteriosa infección que consume la mente de sus habitantes. Empuña tu fiel aguijón y devela los secretos del Vacío.
+          </p>
+
+          <div class="hk-hero-buttons">
+            <a href="#amuletos" class="btn-soul">
+              <span>🛡️</span> Simulador de Amuletos
+            </a>
+            <a href="#personajes" class="btn-void">
+              <span>🗡️</span> Héroes de Hallownest
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SIMULADOR DE AMULETOS (CHARM BUILDER - 11 MUESCAS)
+         ====================================================================== -->
+    <section class="hk-section" id="amuletos">
+      <div class="section-head">
+        <span class="sub">Equipamiento & Sinergias</span>
+        <h2>Simulador de Amuletos (11 Muescas)</h2>
+        <p>Configura la build de tu Caballero. Equipa amuletos respetando las muescas disponibles o atrévete a <strong>Sobrecargarte</strong> para desafiar los límites.</p>
+      </div>
+
+      <!-- Tablero Interactivo de Muescas -->
+      <div class="notches-dashboard">
+        <div class="notches-header-row">
+          <div class="notches-status">
+            <div class="notches-count-badge" id="notches-count">0 / 11 Muescas</div>
+            <div class="overcharmed-warning" id="overcharmed-warn">
+              <span>⚠️</span>
+              <span>¡SOBRECARGADO! Recibirás el doble de daño de todos los ataques.</span>
+            </div>
+          </div>
+
+          <!-- Acciones Rápidas y Builds -->
+          <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+            <button class="btn-void" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;" onclick="loadPreset('sword')">⚔️ Build Aguijón</button>
+            <button class="btn-void" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;" onclick="loadPreset('magic')">🔮 Build Magia</button>
+            <button class="btn-void" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;" onclick="loadPreset('explorer')">🧭 Exploración</button>
+            <button class="btn-void" style="padding: 0.4rem 0.9rem; font-size: 0.8rem; color: #ff6b72; border-color: rgba(255, 107, 114, 0.4);" onclick="clearCharms()">Vaciar</button>
+          </div>
+        </div>
+
+        <!-- Ranuras Visuales de Muescas -->
+        <div class="notches-visual-slots" id="notches-visual-slots"></div>
+
+        <!-- Lista de Amuletos Actualmente Equipados -->
+        <div class="equipped-charms-tags" id="equipped-charms-tags"></div>
+      </div>
+
+      <!-- Cuadrícula de Selección de Amuletos -->
+      <div class="charms-grid" id="charms-grid"></div>
+    </section>
+
+    <!-- ======================================================================
+         PERSONAJES & LEYENDAS (PANTEÓN)
+         ====================================================================== -->
+    <section class="hk-section" id="personajes">
+      <div class="section-head">
+        <span class="sub">Alianzas y Tragedia</span>
+        <h2>Figuras Legendarias</h2>
+        <p>Criaturas nobles, exploradores incansables y recipientes nacidos del Abismo.</p>
+      </div>
+
+      <div class="characters-grid">
+        <article class="char-card">
+          <span class="char-badge">El Protagonista</span>
+          <h3>El Caballero</h3>
+          <div class="char-title">"El Pequeño Fantasma" • Recipiente del Vacío</div>
+          <p>
+            Un ser mudo y sin mente que pensar, sin voluntad que quebrar, sin voz para clamar por el sufrimiento. Portador de un aguijón desgastado y nacido en lo más hondo del Abismo para contener la plaga.
+          </p>
+          <div class="char-quote">
+            "Nacido de Dios y del Vacío... sellarás la luz cegadora que asola sus sueños."
+          </div>
+        </article>
+
+        <article class="char-card">
+          <span class="char-badge">Princesa & Protectora</span>
+          <h3>Hornet</h3>
+          <div class="char-title">Hija de Herrah la Bestia y el Rey Pálido</div>
+          <p>
+            Ágil tejedora de aguja e hilo de seda. Vigila con severidad las ruinas de Hallownest, probando la fuerza y la determinación de todo viajero antes de permitirle descender hacia la Marca del Rey.
+          </p>
+          <div class="char-quote">
+            "¡Shaw! Veo lo que eres... pero debes demostrar si tu fuerza es suficiente para soportar la verdad."
+          </div>
+        </article>
+
+        <article class="char-card">
+          <span class="char-badge">El Sabio Viajero</span>
+          <h3>Quirrel</h3>
+          <div class="char-title">Erudito de Monomon la Maestra</div>
+          <p>
+            Un explorador sereno y de corazón noble que viste una máscara protectora en su cabeza. Siente una irresistible llamada hacia los misterios de Hallownest, convirtiéndose en el más leal confidente del Caballero.
+          </p>
+          <div class="char-quote">
+            "Para contemplar la grandeza de este reino hay que estar dispuesto a arriesgarlo todo."
+          </div>
+        </article>
+
+        <article class="char-card">
+          <span class="char-badge">El Cartógrafo</span>
+          <h3>Cornifer</h3>
+          <div class="char-title">Esposo de Iselda • Creador de Mapas</div>
+          <p>
+            Un simpático mosquito que recorre todas las zonas peligrosas del reino dibujando detallados mapas. Siempre deja un rastro de hojas de papel sueltas y su alegre tarareo característico.
+          </p>
+          <div class="char-quote">
+            "¡Ah, hola de nuevo amigo mío! ¿Te gustaría comprar un mapa de esta fascinante región?"
+          </div>
+        </article>
+
+        <article class="char-card">
+          <span class="char-badge">Caballero de Gran Renombre</span>
+          <h3>Zote el Poderoso</h3>
+          <div class="char-title">Autoproclamado Campeón • Portador de 'Mata-vidas'</div>
+          <p>
+            Un guerrero ridículamente jactancioso y fanfarrón que empuña un aguijón tallado en madera. A pesar de ser salvado repetidamente por el Caballero, insiste en sermonearlo con sus 57 Preceptos de Gloria.
+          </p>
+          <div class="char-quote">
+            "¡Precepto Uno: Gana siempre tus batallas! Perder una batalla no sirve de nada."
+          </div>
+        </article>
+
+        <article class="char-card">
+          <span class="char-badge">El Soberano</span>
+          <h3>El Rey Pálido</h3>
+          <div class="char-title">Wyrm Antiguo • Creador del Palacio Blanco</div>
+          <p>
+            La deidad que concedió razón e inteligencia a los insectos de Hallownest, prometiendo que su reino duraría por toda la eternidad. En su desesperación por combatir la Infección, cometió actos terribles en el Abismo.
+          </p>
+          <div class="char-quote">
+            "Ningún coste es demasiado alto. Ni mente para pensar... ni voz para llorar..."
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         JEFES LEGENDARIOS (BESTIARIO)
+         ====================================================================== -->
+    <section class="hk-section" id="jefes">
+      <div class="section-head">
+        <span class="sub">Desafíos Mortales</span>
+        <h2>Jefes de Hallownest</h2>
+        <p>Encuentros épicos con coreografías de combate milimétricas, patrones letales y bandas sonoras magistrales.</p>
+      </div>
+
+      <div class="boss-grid">
+        <article class="boss-card">
+          <div class="boss-header">
+            <h3>Señores de las Mantis</h3>
+            <span class="boss-location">Aldea Mantis</span>
+          </div>
+          <p class="boss-desc">
+            Tres hermanas reinas que rechazaron la Infección mediante su férrea disciplina de combate. La pelea consiste en un duelo honorable a ritmo frenético de lanzas y bumeranes cortantes.
+          </p>
+          <div class="boss-stats">
+            <div class="stat-item">
+              <span>Dificultad</span>
+              <span>★★★★☆</span>
+            </div>
+            <div class="stat-item">
+              <span>Recompensa</span>
+              <span>Marca del Orgullo & Respeto</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="boss-card">
+          <div class="boss-header">
+            <h3>Grimm, Rey de la Pesadilla</h3>
+            <span class="boss-location">Reino de las Pesadillas</span>
+          </div>
+          <p class="boss-desc">
+            El maestro de la Compañía de Grimm que viaja entre mundos alimentando la Llama Escarlata. Su combate es una auténtica danza flamígera veloz donde cada error cuesta dos máscaras de salud.
+          </p>
+          <div class="boss-stats">
+            <div class="stat-item">
+              <span>Dificultad</span>
+              <span>★★★★★+</span>
+            </div>
+            <div class="stat-item">
+              <span>Banda Sonora</span>
+              <span>Órgano & Violín Épico</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="boss-card">
+          <div class="boss-header">
+            <h3>El Caballero Hueco</h3>
+            <span class="boss-location">Templo del Huevo Negro</span>
+          </div>
+          <p class="boss-desc">
+            El recipiente elegido por el Rey Pálido para contener a la plaga. Sin embargo, no era completamente puro debido a un vínculo de afecto con su creador, provocando que la Infección carcomiera sus entrañas.
+          </p>
+          <div class="boss-stats">
+            <div class="stat-item">
+              <span>Dificultad</span>
+              <span>★★★★☆</span>
+            </div>
+            <div class="stat-item">
+              <span>Rol Narrativo</span>
+              <span>Clímax Dramático</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="boss-card">
+          <div class="boss-header">
+            <h3>El Destello (The Radiance)</h3>
+            <span class="boss-location">Los Sueños del Rey Hueco</span>
+          </div>
+          <p class="boss-desc">
+            La deidad ancestral con forma de polilla celestial de luz cegadora. Fue relegada al olvido tras la llegada del Rey Pálido y contraatacó desatando la Infección a través de los sueños de todos los insectos.
+          </p>
+          <div class="boss-stats">
+            <div class="stat-item">
+              <span>Dificultad</span>
+              <span>★★★★★</span>
+            </div>
+            <div class="stat-item">
+              <span>Elemento</span>
+              <span>Luz Sagrada & Espadas de Luz</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         REGIONES DE HALLOWNEST
+         ====================================================================== -->
+    <section class="hk-section" id="regiones">
+      <div class="section-head">
+        <span class="sub">Geografía Subterránea</span>
+        <h2>Los Dominios de Hallownest</h2>
+        <p>Un mundo interconectado con biomas sobrecogedores, arquitectura en ruinas y atmósferas inigualables.</p>
+      </div>
+
+      <div class="regions-grid">
+        <div class="region-card">
+          <div class="region-icon">🏚️</div>
+          <h3>Bocasucia</h3>
+          <p>La aldea silenciosa en la superficie donde se reúnen los viajeros desanimados alrededor de los bancos y faroles.</p>
+        </div>
+
+        <div class="region-card">
+          <div class="region-icon">🌿</div>
+          <h3>Sendero Verde</h3>
+          <p>Exuberantes grutas cubiertas de musgo viviente, estanques de ácido mortal y nidos de cazadores ágiles.</p>
+        </div>
+
+        <div class="region-card">
+          <div class="region-icon">🌧️</div>
+          <h3>Ciudad de Lágrimas</h3>
+          <p>La capital gótica donde la lluvia cae incesante desde el Lago Azul. Hogar de la Torre del Vigía y la Forja de Aguijones.</p>
+        </div>
+
+        <div class="region-card">
+          <div class="region-icon">💎</div>
+          <h3>Cumbre de Cristal</h3>
+          <p>Minas brillantes repletas de cristales rosados resonantes, rayos láser energéticos y cintas transportadoras.</p>
+        </div>
+
+        <div class="region-card">
+          <div class="region-icon">🕷️</div>
+          <h3>Nido Profundo</h3>
+          <p>Un laberinto claustrofóbico y oscuro donde habitan arañas colosales, criaturas acechantes y la Soñadora Herrah.</p>
+        </div>
+
+        <div class="region-card">
+          <div class="region-icon">🌑</div>
+          <h3>El Abismo</h3>
+          <p>La cuna primigenia del Vacío. El lugar donde yacen millones de recipientes fallidos abandonados en la oscuridad.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SILKSONG TEASER
+         ====================================================================== -->
+    <section class="hk-section" id="silksong">
+      <div class="silksong-box">
+        <div class="silksong-content">
+          <span class="silksong-badge">✦ Próxima Aventura</span>
+          <h2 class="silksong-title">Hollow Knight: Silksong</h2>
+          <p class="silksong-desc">
+            Ponte en la piel de Hornet, princesa de Hallownest, capturada y llevada al misterioso reino embrujado de Pharloom. Descubre un nuevo arsenal de herramientas, saltos acrobáticos mortíferos y una tierra gobernada por la seda y el canto.
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://www.teamcherry.com.au" target="_blank" rel="noopener" class="btn-soul" style="border-color: #ff6b72; background: rgba(230, 57, 70, 0.2);">
+              <span>🕸️</span> Ver Portal de Team Cherry
+            </a>
+            <a href="../index.html" class="btn-void">
+              <span>🎒</span> Ir a Tienda Pokémon (PokéMart)
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       FOOTER GÓTICO
+       ====================================================================== -->
+  <footer class="hk-footer">
+    <div class="hk-footer-container">
+      <div class="hk-footer-logo">HALLOWNEST</div>
+      <p>
+        "Más allá de este punto sólo yacen la ruina y la locura. Si desciendes, hazlo con el aguijón afilado y el corazón firme."
+      </p>
+
+      <ul class="hk-footer-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#amuletos">Amuletos</a></li>
+        <li><a href="#personajes">Personajes</a></li>
+        <li><a href="#jefes">Jefes</a></li>
+        <li><a href="#regiones">Regiones</a></li>
+        <li><a href="../index.html">Página de Pokémon</a></li>
+      </ul>
+
+      <div class="hk-copyright">
+        © 2026 Crónicas de Hallownest. Hollow Knight es una obra maestra desarrollada por Team Cherry.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Interactivo -->
+  <script src="../hollow.js"></script>
+</body>
+</html>

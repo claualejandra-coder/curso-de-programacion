@@ -1,0 +1,989 @@
+/* ==========================================================================
+   HOLLOW KNIGHT: CRÓNICAS DE HALLOWNEST - HOJA DE ESTILOS
+   Diseño Gótico Subterráneo, Atmósfera de Fantasía Oscura, Alma y Vacío
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Paleta Hallownest */
+  --hk-bg-deep: #05070c;
+  --hk-bg-card: rgba(14, 19, 31, 0.78);
+  --hk-bg-card-hover: rgba(22, 30, 48, 0.9);
+  --hk-glass: rgba(10, 14, 24, 0.65);
+  
+  /* Resplandores Místicos */
+  --hk-soul-cyan: #7fe7f7;
+  --hk-soul-blue: #38bdf8;
+  --hk-soul-glow: rgba(127, 231, 247, 0.35);
+  --hk-pale-white: #e2e8f0;
+  --hk-pale-glow: rgba(226, 232, 240, 0.4);
+  
+  --hk-infection-orange: #ff7b1c;
+  --hk-infection-glow: rgba(255, 123, 28, 0.35);
+  --hk-void-purple: #9d4edd;
+  --hk-void-glow: rgba(157, 78, 221, 0.3);
+  --hk-geo-gold: #fbbf24;
+  --hk-geo-glow: rgba(251, 191, 36, 0.3);
+  
+  /* Tipografía */
+  --font-gothic: 'Cinzel', serif;
+  --font-text: 'Outfit', sans-serif;
+  
+  /* Bordes y Sombras */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-ornate: rgba(127, 231, 247, 0.25);
+  --shadow-cavern: 0 15px 35px -5px rgba(0, 0, 0, 0.8);
+  
+  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset Global */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-text);
+  background-color: var(--hk-bg-deep);
+  color: var(--hk-pale-white);
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(157, 78, 221, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(5, 7, 12, 0.95) 0%, #030408 100%);
+  background-attachment: fixed;
+  line-height: 1.6;
+}
+
+/* Scrollbar gótico */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #05070c;
+}
+::-webkit-scrollbar-thumb {
+  background: #1c263c;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hk-soul-cyan);
+}
+
+/* ==========================================================================
+   NAVBAR SUPERIOR GÓTICA
+   ========================================================================== */
+.hk-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5, 7, 12, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.85rem 2rem;
+}
+
+.hk-nav-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.hk-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  color: var(--hk-pale-white);
+}
+
+.hk-brand-seal {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-ornate);
+  background: radial-gradient(circle, rgba(127, 231, 247, 0.2) 0%, rgba(14, 19, 31, 0.8) 80%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px var(--hk-soul-glow);
+  position: relative;
+  transition: var(--transition);
+}
+
+.hk-brand:hover .hk-brand-seal {
+  transform: rotate(45deg);
+  box-shadow: 0 0 25px rgba(127, 231, 247, 0.6);
+}
+
+.hk-brand-text h1 {
+  font-family: var(--font-gothic);
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.hk-brand-text span {
+  font-size: 0.7rem;
+  color: #7fe7f7;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  display: block;
+}
+
+.hk-nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.2rem;
+}
+
+.hk-nav-links a {
+  font-family: var(--font-gothic);
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.88rem;
+  letter-spacing: 1px;
+  padding: 0.4rem 0.6rem;
+  transition: var(--transition);
+  position: relative;
+}
+
+.hk-nav-links a:hover, .hk-nav-links a.active {
+  color: var(--hk-soul-cyan);
+}
+
+.hk-nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--hk-soul-cyan);
+  transition: var(--transition);
+  transform: translateX(-50%);
+}
+
+.hk-nav-links a:hover::after {
+  width: 80%;
+}
+
+.hk-hud-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Recipiente de Alma Interactivo (Soul Vessel) */
+.soul-vessel {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  transition: var(--transition);
+}
+
+.soul-vessel:hover {
+  background: rgba(127, 231, 247, 0.08);
+  border-color: rgba(127, 231, 247, 0.4);
+}
+
+.soul-meter-orb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 10%, #7fe7f7 60%, #1e40af 100%);
+  box-shadow: 0 0 10px rgba(127, 231, 247, 0.7);
+  animation: pulse-soul 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse-soul {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(127, 231, 247, 0.5); }
+  50% { transform: scale(1.1); box-shadow: 0 0 18px rgba(127, 231, 247, 0.9); }
+}
+
+.soul-vessel-text {
+  font-family: var(--font-gothic);
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  color: var(--hk-soul-cyan);
+  font-weight: 600;
+}
+
+/* Contador de Geo */
+.geo-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  color: var(--hk-geo-gold);
+  font-family: var(--font-gothic);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.geo-counter:hover {
+  background: rgba(251, 191, 36, 0.16);
+  box-shadow: 0 0 12px var(--hk-geo-glow);
+  transform: translateY(-1px);
+}
+
+.geo-icon {
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hk-hero {
+  position: relative;
+  max-width: 1300px;
+  margin: 2rem auto 3rem;
+  padding: 0 2rem;
+}
+
+.hk-hero-card {
+  position: relative;
+  min-height: 520px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-cavern);
+}
+
+.hk-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.65) contrast(1.1);
+  transition: transform 10s ease;
+}
+
+.hk-hero-card:hover .hk-hero-bg {
+  transform: scale(1.03);
+}
+
+.hk-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 7, 12, 0.95) 0%,
+    rgba(5, 7, 12, 0.75) 55%,
+    rgba(5, 7, 12, 0.25) 100%
+  );
+  z-index: 1;
+}
+
+.hk-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 3.5rem;
+}
+
+.hk-quote-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-gothic);
+  font-size: 0.78rem;
+  color: #7fe7f7;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: rgba(127, 231, 247, 0.1);
+  border: 1px solid rgba(127, 231, 247, 0.3);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+}
+
+.hk-hero-title {
+  font-family: var(--font-gothic);
+  font-size: 3.2rem;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 2px;
+  margin-bottom: 1.25rem;
+  color: #fff;
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+.hk-hero-title .glow-cyan {
+  background: linear-gradient(90deg, #7fe7f7, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+.hk-hero-desc {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.hk-hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-soul {
+  background: linear-gradient(135deg, rgba(127, 231, 247, 0.25), rgba(56, 189, 248, 0.2));
+  color: #fff;
+  border: 1px solid var(--hk-soul-cyan);
+  padding: 0.85rem 1.8rem;
+  border-radius: 999px;
+  font-family: var(--font-gothic);
+  font-size: 0.92rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 0 20px var(--hk-soul-glow);
+  transition: var(--transition);
+}
+
+.btn-soul:hover {
+  background: linear-gradient(135deg, var(--hk-soul-cyan), var(--hk-soul-blue));
+  color: #05070c;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(127, 231, 247, 0.8);
+}
+
+.btn-void {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid var(--border-subtle);
+  padding: 0.85rem 1.8rem;
+  border-radius: 999px;
+  font-family: var(--font-gothic);
+  font-size: 0.92rem;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: var(--transition);
+}
+
+.btn-void:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   SIMULADOR DE AMULETOS (CHARM BUILDER - 11 MUESCAS)
+   ========================================================================== */
+.hk-section {
+  max-width: 1300px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+}
+
+.section-head {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+}
+
+.section-head .sub {
+  font-family: var(--font-gothic);
+  font-size: 0.8rem;
+  color: var(--hk-soul-cyan);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.section-head h2 {
+  font-family: var(--font-gothic);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.section-head p {
+  color: #94a3b8;
+  margin-top: 0.5rem;
+}
+
+/* Tablero de Muescas */
+.notches-dashboard {
+  background: var(--hk-bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 1.8rem 2rem;
+  margin-bottom: 2.5rem;
+  backdrop-filter: blur(12px);
+}
+
+.notches-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.notches-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notches-count-badge {
+  font-family: var(--font-gothic);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--hk-soul-cyan);
+  background: rgba(127, 231, 247, 0.08);
+  border: 1px solid rgba(127, 231, 247, 0.3);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+}
+
+.overcharmed-warning {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ff7b1c;
+  font-family: var(--font-gothic);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  animation: pulse-warn 1.5s infinite;
+}
+
+@keyframes pulse-warn {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+.notches-visual-slots {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  background: rgba(5, 7, 12, 0.6);
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 1.25rem;
+}
+
+.notch-slot {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #64748b;
+  transition: var(--transition);
+}
+
+.notch-slot.filled {
+  border-style: solid;
+  border-color: var(--hk-soul-cyan);
+  background: radial-gradient(circle, #7fe7f7 0%, rgba(56, 189, 248, 0.3) 70%, transparent 100%);
+  box-shadow: 0 0 12px var(--hk-soul-glow);
+  color: #05070c;
+  font-weight: bold;
+}
+
+.notch-slot.overcharmed {
+  border-color: #ff7b1c;
+  background: radial-gradient(circle, #ff7b1c 0%, rgba(255, 123, 28, 0.3) 70%, transparent 100%);
+  box-shadow: 0 0 15px var(--hk-infection-glow);
+}
+
+.equipped-charms-tags {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  min-height: 38px;
+  align-items: center;
+}
+
+.equipped-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-ornate);
+  color: #fff;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.equipped-chip:hover {
+  background: rgba(255, 59, 68, 0.2);
+  border-color: #ff3b44;
+  color: #ff6b72;
+}
+
+/* Grilla de Amuletos */
+.charms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.charm-card {
+  background: var(--hk-bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.charm-card:hover {
+  border-color: rgba(127, 231, 247, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(127, 231, 247, 0.1);
+  background: var(--hk-bg-card-hover);
+}
+
+.charm-card.is-equipped {
+  border-color: var(--hk-soul-cyan);
+  background: rgba(18, 27, 44, 0.95);
+  box-shadow: 0 0 20px var(--hk-soul-glow);
+}
+
+.charm-card.is-equipped::after {
+  content: 'EQUIPADO';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: var(--font-gothic);
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  color: var(--hk-soul-cyan);
+  background: rgba(127, 231, 247, 0.15);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(127, 231, 247, 0.4);
+}
+
+.charm-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.charm-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.charm-meta h3 {
+  font-family: var(--font-gothic);
+  font-size: 1.05rem;
+  color: #fff;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.charm-cost {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.charm-cost .notches-diamonds {
+  color: var(--hk-soul-cyan);
+  letter-spacing: 2px;
+}
+
+.charm-desc {
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.charm-tag-effect {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid var(--hk-soul-cyan);
+  padding: 0.4rem 0.6rem;
+  font-size: 0.78rem;
+  color: #7fe7f7;
+  border-radius: 0 6px 6px 0;
+}
+
+/* ==========================================================================
+   PERSONAJES Y LEYENDAS (PANTEÓN)
+   ========================================================================== */
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.char-card {
+  background: var(--hk-bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 1.8rem;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.char-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-cavern);
+}
+
+.char-badge {
+  font-family: var(--font-gothic);
+  font-size: 0.75rem;
+  color: var(--hk-soul-cyan);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.char-card h3 {
+  font-family: var(--font-gothic);
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.char-card .char-title {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.char-card p {
+  font-size: 0.92rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  flex: 1;
+}
+
+.char-quote {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid #38bdf8;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #93c5fd;
+}
+
+/* ==========================================================================
+   JEFES LEGENDARIOS (BESTIARIO)
+   ========================================================================== */
+.boss-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.5rem;
+}
+
+.boss-card {
+  background: var(--hk-bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 1.8rem;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.boss-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  transition: var(--transition);
+}
+
+.boss-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 123, 28, 0.4);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.7), 0 0 20px var(--hk-infection-glow);
+}
+
+.boss-card:hover::before {
+  background: linear-gradient(90deg, #ff7b1c, #9d4edd);
+}
+
+.boss-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.boss-header h3 {
+  font-family: var(--font-gothic);
+  font-size: 1.35rem;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.boss-location {
+  font-size: 0.75rem;
+  color: var(--hk-infection-orange);
+  background: rgba(255, 123, 28, 0.1);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 123, 28, 0.3);
+  font-weight: 600;
+}
+
+.boss-desc {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.boss-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.85rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+}
+
+.stat-item span:first-child {
+  color: #64748b;
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.stat-item span:last-child {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   REGIONES DE HALLOWNEST
+   ========================================================================== */
+.regions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.region-card {
+  background: var(--hk-bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+
+.region-card:hover {
+  border-color: rgba(127, 231, 247, 0.3);
+  transform: translateY(-3px);
+  background: var(--hk-bg-card-hover);
+}
+
+.region-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.region-card h3 {
+  font-family: var(--font-gothic);
+  font-size: 1.15rem;
+  color: #fff;
+  margin-bottom: 0.35rem;
+}
+
+.region-card p {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   SILKSONG TEASER BANNER
+   ========================================================================== */
+.silksong-box {
+  background: linear-gradient(135deg, rgba(230, 57, 70, 0.15) 0%, rgba(15, 23, 42, 0.85) 100%);
+  border: 1px solid rgba(230, 57, 70, 0.35);
+  border-radius: 20px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 35px -5px rgba(230, 57, 70, 0.2);
+}
+
+.silksong-content {
+  max-width: 650px;
+  position: relative;
+  z-index: 2;
+}
+
+.silksong-badge {
+  font-family: var(--font-gothic);
+  font-size: 0.8rem;
+  color: #ff6b72;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+
+.silksong-title {
+  font-family: var(--font-gothic);
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.silksong-desc {
+  font-size: 1rem;
+  color: #e2e8f0;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   PIE DE PÁGINA (FOOTER)
+   ========================================================================== */
+.hk-footer {
+  background: #030408;
+  border-top: 1px solid var(--border-subtle);
+  padding: 3.5rem 2rem 2rem;
+  margin-top: 5rem;
+}
+
+.hk-footer-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hk-footer-logo {
+  font-family: var(--font-gothic);
+  font-size: 1.6rem;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.hk-footer p {
+  color: #64748b;
+  font-size: 0.88rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+.hk-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.hk-footer-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: var(--transition);
+}
+
+.hk-footer-links a:hover {
+  color: var(--hk-soul-cyan);
+}
+
+.hk-copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1.5rem;
+  font-size: 0.8rem;
+  color: #475569;
+}
+
+/* ==========================================================================
+   RESPONSIVIDAD
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hk-hero-title { font-size: 2.4rem; }
+  .hk-hero-content { padding: 2rem; }
+  .hk-nav-links { display: none; }
+}
+
+@media (max-width: 600px) {
+  .hk-hero-title { font-size: 1.85rem; }
+  .hk-section { padding: 0 1rem; }
+  .notches-dashboard { padding: 1.25rem 1rem; }
+  .silksong-box { padding: 1.8rem 1.25rem; }
+}
