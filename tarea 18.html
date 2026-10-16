@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acordeón Interactivo</title>
+    <link rel="stylesheet" href="tarea.css">
+</head>
+
+<body>
+
+    <h1>Preguntas Frecuentes</h1>
+
+    <div class="acordeon-item">
+        <input type="checkbox" id="faq-1" class="acordeon-check">
+        <label for="faq-1" class="acordeon-titulo">¿Cómo funciona esto sin JavaScript?</label>
+        <div class="acordeon-contenido">
+            <p>Aprovecha el atributo <code>for</code> de la etiqueta <code>&lt;label&gt;</code> para cambiar el estado
+                del <code>&lt;input type="checkbox"&gt;</code> oculto. Luego, CSS detecta el estado
+                <code>:checked</code> con el selector adyacente <code>+</code> para mostrar el contenido.
+            </p>
+        </div>
+    </div>
+
+    <div class="acordeon-item">
+        <input type="checkbox" id="faq-2" class="acordeon-check">
+        <label for="faq-2" class="acordeon-titulo">¿Puedo abrir varias preguntas al mismo tiempo?</label>
+        <div class="acordeon-contenido">
+            <p>Sí, al utilizar casillas de verificación (<code>checkbox</code>), cada opción funciona de manera
+                independiente. Si quisieras que solo se abra una a la vez, podrías usar botones de radio
+                (<code>type="radio"</code>).</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

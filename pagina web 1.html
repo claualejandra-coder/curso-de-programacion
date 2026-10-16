@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Centro Oficial de Recargas para Infinity Nikki. Compra Cristales Estelares, Pase de Bendición del Destino y Paquetes de Diseñadora con entrega inmediata en Miraland.">
+  <meta name="keywords" content="Infinity Nikki, recargas, Cristales Estelares, Infold Games, recargar Infinity Nikki, Miraland, Pase Mensual">
+  <meta name="author" content="Infold Games & Infinity Nikki Official Top-up">
+  <title>Infinity Nikki - Centro Oficial de Recargas de Miraland</title>
+  
+  <!-- Estilos y Fuentes -->
+  <link rel="stylesheet" href="nikki-style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/crystals.jpg">
+</head>
+<body>
+
+  <!-- Lienzo de Partículas y Estrellas de Fondo -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Barra de Navegación -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="#" class="brand" id="nav-brand">
+        <div class="brand-icon">✦</div>
+        <div>
+          <div class="brand-title">INFINITY NIKKI</div>
+          <div class="brand-subtitle">Centro de Recargas Oficial</div>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <div class="btn-server-status" title="Servidores de Miraland Operativos">
+          <span class="status-dot"></span>
+          <span>Servidores Activos</span>
+        </div>
+
+        <div class="currency-select-wrap">
+          <label for="currency-selector">Moneda:</label>
+          <select id="currency-selector" aria-label="Seleccionar Moneda">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="MXN">MXN ($)</option>
+            <option value="ARS">ARS ($)</option>
+            <option value="CLP">CLP ($)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="container">
+
+    <!-- Hero Banner -->
+    <section class="hero-banner" id="hero-section">
+      <div class="hero-img-wrap">
+        <img src="assets/hero_banner.jpg" alt="Nikki en vestido de gala mágico bajo el cielo estrellado de Miraland">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-tag">✦ Temporada de Ensueño ✦</div>
+        <h1 class="hero-title">Recargas Mágicas en <span>Infinity Nikki</span></h1>
+        <p class="hero-desc">
+          Obtén Cristales Estelares para invocar los conjuntos milagrosos más deslumbrantes. 
+          Recibe tus recompensas de manera instantánea en tu buzón de estilista.
+        </p>
+        <div class="hero-badges">
+          <div class="hero-badge-item">⚡ Entrega Inmediata</div>
+          <div class="hero-badge-item">🎁 Bonus x2 en 1ª Recarga</div>
+          <div class="hero-badge-item">🔒 Transacción Segura SSL</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flujo de Recarga en Pasos -->
+    <section class="recharge-flow">
+
+      <!-- PASO 1: Identificación del Jugador -->
+      <article class="step-card" id="step-player">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <div class="step-title-wrap">
+            <h2>Ingresa los Datos de tu Estilista</h2>
+            <p>Selecciona tu servidor e ingresa tu ID de Jugador (UID) que encuentras en tu perfil del juego</p>
+          </div>
+        </div>
+
+        <div class="uid-form-grid">
+          <div class="form-group">
+            <label for="select-server">Servidor Regional</label>
+            <select id="select-server" class="form-control">
+              <option value="América (Florawish)">América (Florawish)</option>
+              <option value="Europa (Heartcraft)">Europa (Heartcraft)</option>
+              <option value="Asia (Caelestia)">Asia (Caelestia)</option>
+              <option value="CN (Miracle)">CN (Miracle Continent)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="input-uid">UID de Jugador (ID de Estilista)</label>
+            <input type="text" id="input-uid" class="form-control" placeholder="Ej: 702914853" value="702914853">
+          </div>
+
+          <button type="button" id="btn-verify-uid" class="btn-primary">
+            <span>Verificar Cuenta</span> ✦
+          </button>
+        </div>
+
+        <!-- Perfil Verificado (Visible) -->
+        <div class="user-profile-box" id="user-profile-box">
+          <div class="user-profile-meta">
+            <div class="user-avatar-circle" title="Avatar de Nikki"></div>
+            <div class="user-name-role">
+              <strong id="profile-name">Nikki_Stylist🌸</strong>
+              <span id="profile-meta">Nivel 48 • Servidor: América (Florawish)</span>
+            </div>
+          </div>
+          <div class="user-verified-badge">
+            <span>✓</span> Cuenta Confirmada
+          </div>
+        </div>
+      </article>
+
+      <!-- PASO 2: Selección de Artículos -->
+      <article class="step-card" id="step-items">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <div class="step-title-wrap">
+            <h2>Selecciona tu Paquete de Cristales</h2>
+            <p>Aprovecha el bono doble en la primera compra de cada denominación</p>
+          </div>
+        </div>
+
+        <!-- Pestañas de Categoría -->
+        <div class="tabs-container" role="tablist">
+          <button class="tab-btn active" data-tab="crystals" role="tab" id="tab-crystals">
+            💎 Cristales Estelares
+          </button>
+          <button class="tab-btn" data-tab="passes" role="tab" id="tab-passes">
+            🌟 Bendición Mensual & Pases
+          </button>
+          <button class="tab-btn" data-tab="fashion" role="tab" id="tab-fashion">
+            👗 Tesoros de Costura & Diseñadora
+          </button>
+        </div>
+
+        <!-- Grid Dinámico de Paquetes -->
+        <div class="items-grid" id="packages-grid">
+          <!-- Generado dinámicamente por nikki-app.js -->
+        </div>
+      </article>
+
+      <!-- PASO 3: Método de Pago Seguro -->
+      <article class="step-card" id="step-payment">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <div class="step-title-wrap">
+            <h2>Método de Pago Seguro</h2>
+            <p>Transacciones cifradas bajo protocolos de seguridad bancaria internacional</p>
+          </div>
+        </div>
+
+        <div class="payment-grid" id="payment-methods-grid">
+          <div class="payment-method-card selected" data-method="card">
+            <div class="pm-icon">💳</div>
+            <div class="pm-info">
+              <span class="pm-name">Tarjeta de Crédito</span>
+              <span class="pm-sub">Visa, Mastercard, Amex</span>
+            </div>
+          </div>
+
+          <div class="payment-method-card" data-method="paypal">
+            <div class="pm-icon">🅿️</div>
+            <div class="pm-info">
+              <span class="pm-name">PayPal</span>
+              <span class="pm-sub">Pago Rápido y Seguro</span>
+            </div>
+          </div>
+
+          <div class="payment-method-card" data-method="apple_google">
+            <div class="pm-icon">📱</div>
+            <div class="pm-info">
+              <span class="pm-name">Google / Apple Pay</span>
+              <span class="pm-sub">1 Clic en Celular</span>
+            </div>
+          </div>
+
+          <div class="payment-method-card" data-method="oxxo">
+            <div class="pm-icon">🏪</div>
+            <div class="pm-info">
+              <span class="pm-name">Efectivo / OXXO</span>
+              <span class="pm-sub">Pago en Tiendas Locales</span>
+            </div>
+          </div>
+
+          <div class="payment-method-card" data-method="razer">
+            <div class="pm-icon">🎮</div>
+            <div class="pm-info">
+              <span class="pm-name">Razer Gold</span>
+              <span class="pm-sub">Monedero Gamer</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Sección de Preguntas Frecuentes (FAQ) -->
+    <section class="faq-section" id="faq-section">
+      <h2 class="section-title">Preguntas Frecuentes de Estilistas</h2>
+      <p class="section-subtitle">Todo lo que necesitas saber sobre tus compras mágicas en Miraland</p>
+
+      <div class="faq-accordion">
+        <div class="faq-item active">
+          <div class="faq-header">
+            <span>¿Cuánto tiempo tarda en llegar la recarga a mi cuenta de Infinity Nikki?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-content">
+            <p>La entrega es automática e instantánea. Una vez confirmado el pago, los Cristales Estelares y bonificaciones aparecerán directamente en el buzón interno de tu cuenta o se acreditarán a tu saldo en menos de 60 segundos.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span>¿Cómo encuentro mi UID de jugador dentro del juego?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-content">
+            <p>Abre <strong>Infinity Nikki</strong>, abre el menú del juego (icono de Momo o del teléfono mágico) y entra a tu <strong>Perfil de Estilista</strong>. Encontrarás tu UID debajo de tu nombre y foto de perfil. Puedes tocar el icono de copiar para pegarlo directamente aquí.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span>¿Cómo funciona el Bono Doble (x2) de Primera Recarga?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-content">
+            <p>Si es la primera vez que compras esa denominación específica de Cristales Estelares, recibirás el 100% adicional como regalo. Cada denominación cuenta con su propio bono individual de primera vez.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-header">
+            <span>¿Qué beneficios otorga la "Bendición del Destino" (Pase Mensual)?</span>
+            <span class="faq-icon">▼</span>
+          </div>
+          <div class="faq-content">
+            <p>Otorga 300 Cristales Estelares de forma inmediata al momento de la compra, y luego 90 Cristales adicionales cada día durante 30 días al iniciar sesión, sumando un gran total de 3,000 Cristales Estelares.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Barra Flotante de Confirmación y Pago -->
+  <aside class="checkout-bar" id="checkout-bar">
+    <div class="container checkout-bar-content">
+      <div class="checkout-details">
+        <div class="checkout-item-preview">
+          <div class="preview-thumbnail">
+            <img src="assets/crystals.jpg" alt="Cristales Estelares" id="summary-item-img">
+          </div>
+          <div class="preview-title-wrap">
+            <span class="preview-name" id="summary-item-name">300 + 30 Cristales Estelares</span>
+            <span class="preview-account" id="summary-account-info">UID: 702914853 • América (Florawish)</span>
+          </div>
+        </div>
+
+        <div class="preview-total">
+          <span class="total-label">Total a Pagar</span>
+          <span class="total-amount" id="summary-total-price">$4.99 USD</span>
+        </div>
+      </div>
+
+      <button type="button" class="btn-checkout-big" id="btn-checkout-submit">
+        <span>Completar Recarga Mágica</span>
+        <span>✦</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Modal de Recibo y Éxito de Compra -->
+  <div class="modal-overlay" id="checkout-modal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="btn-modal-close" aria-label="Cerrar">&times;</button>
+      
+      <div class="receipt-header">
+        <div class="receipt-icon-circle">✨</div>
+        <h3>¡Recarga Mágica Exitosa!</h3>
+        <p>Tus cristales han sido enviados al buzón de Miraland</p>
+      </div>
+
+      <div class="receipt-card">
+        <div class="receipt-row">
+          <span class="receipt-label">Código de Orden:</span>
+          <span class="receipt-value" id="receipt-order-id">NIKKI-749201</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Fecha y Hora:</span>
+          <span class="receipt-value" id="receipt-date">-</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Estilista (UID):</span>
+          <span class="receipt-value" id="receipt-uid">702914853</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Servidor:</span>
+          <span class="receipt-value" id="receipt-server">América</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Artículo Adquirido:</span>
+          <span class="receipt-value" id="receipt-item">300 Cristales</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Bonificación Aplicada:</span>
+          <span class="receipt-value" id="receipt-bonus">+300 Bonus</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Método de Pago:</span>
+          <span class="receipt-value" id="receipt-method">Tarjeta</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Total Pagado:</span>
+          <span class="receipt-value price" id="receipt-total">$4.99 USD</span>
+        </div>
+      </div>
+
+      <button type="button" class="btn-primary btn-full" id="btn-modal-done">
+        ¡Aceptar y Volver a la Tienda! 🌸
+      </button>
+    </div>
+  </div>
+
+  <!-- Pie de Página -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">✦ INFINITY NIKKI ✦</div>
+      <div class="footer-links">
+        <a href="#hero-section">Inicio</a>
+        <a href="#step-player">Recargar</a>
+        <a href="#step-items">Catálogo de Cristales</a>
+        <a href="#faq-section">Preguntas Frecuentes</a>
+        <a href="#">Términos de Servicio</a>
+        <a href="#">Aviso de Privacidad</a>
+      </div>
+      <p>© 2026 Infold Games. Infinity Nikki y todos los personajes, atuendos y logotipos asociados son marcas registradas de Infold Games.</p>
+      <p style="margin-top: 6px; font-size: 11px; color: #7a6e8e;">Portal oficial de recarga segura y autorizada para la comunidad de estilistas.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="nikki-app.js"></script>
+</body>
+</html>

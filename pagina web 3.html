@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Compendio y archivo interactivo de Resident Evil 7 Biohazard. Descubre a los personajes de la familia Baker, Ethan y Mia Winters, trajes, armas y cintas VHS en Dulvey, Luisiana.">
+  <meta name="keywords" content="Resident Evil 7, Biohazard, Ethan Winters, Jack Baker, Mia Winters, Eveline, Mutamiceto, Cintas VHS, Armas, Trajes, Dulvey Louisiana, Capcom">
+  <meta name="author" content="Archivos de la Mansión Baker - Expediente Confidencial">
+  <title>RESIDENT EVIL 7: Biohazard - Expediente de la Mansión Baker</title>
+
+  <!-- Google Fonts: Estilo Metraje Encontrado (VHS), Terminal y Terror -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Share+Tech+Mono&family=Special+Elite&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos de Resident Evil 7 -->
+  <link rel="stylesheet" href="re7-style.css">
+</head>
+<body>
+
+  <!-- Filtro de Líneas de Escaneo CRT y Ruido Analógico VHS -->
+  <div class="vhs-scanlines" aria-hidden="true"></div>
+
+  <!-- Viñeta de Pantalla y Humedad del Pantano -->
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-- Canvas Dinámico de Esporas y Mutamiceto -->
+  <canvas id="mold-canvas"></canvas>
+
+  <div class="app-wrapper">
+
+    <!-- ====================================================================
+         1. BARRA DE NAVEGACIÓN Y HUD DEL RELOJ BIOMÉTRICO (SMARTWATCH)
+         ==================================================================== -->
+    <header class="main-navbar">
+      <div class="container navbar-inner">
+        
+        <!-- Logotipo / Emblema Biohazard -->
+        <a href="#hero-section" class="brand-wrapper" id="brand-link" title="Volver al inicio">
+          <div class="brand-biohazard-icon" aria-hidden="true">☣</div>
+          <div class="brand-text">
+            <h1>RESIDENT EVIL 7</h1>
+            <div class="brand-sub">BIOHAZARD • DULVEY ARCHIVES</div>
+          </div>
+        </a>
+
+        <!-- Menú de Enlaces Rápidos -->
+        <nav class="nav-menu" aria-label="Navegación principal">
+          <a href="#hero-section" class="nav-link active">Inicio</a>
+          <a href="#vhs-section" class="nav-link">Cintas VHS</a>
+          <a href="#catalogo-seccion" class="nav-link">Expedientes</a>
+          <a href="#bio-lore" class="nav-link">El Mutamiceto</a>
+        </nav>
+
+        <!-- HUD Biométrico del Reloj Códec de Ethan -->
+        <div class="nav-hud">
+          <div class="ekg-widget" id="ekg-widget" title="Haz clic para alternar el estado del pulso (FINE / CAUTION / DANGER)">
+            <div class="ekg-line-wrap" aria-hidden="true">
+              <div class="ekg-pulse" id="ekg-pulse-line"></div>
+            </div>
+            <span class="ekg-status-text status-fine" id="ekg-status-text">FINE</span>
+          </div>
+
+          <div class="hud-coins" title="Monedas Antiguas de la Mansión">
+            <span>🪙</span>
+            <span>18/18</span>
+          </div>
+
+          <button class="btn-hud-audio" id="btn-audio-toggle" type="button" title="Activar/Silenciar efectos sonoros">
+            <span>🔊</span>
+            <span>Sonido</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <main>
+      <!-- ====================================================================
+           2. SECCIÓN HERO: METRAJE ENCONTRADO EN LA PLANTACIÓN BAKER
+           ==================================================================== -->
+      <section class="hero-section" id="hero-section">
+        
+        <!-- Marco de Pantalla VHS Analógica -->
+        <div class="hero-vhs-frame" aria-hidden="true">
+          <div class="vhs-top-row">
+            <div class="vhs-rec-indicator">
+              <span class="rec-dot"></span>
+              <span>REC • SP</span>
+            </div>
+            <div>TAPE: DERELICT_HOUSE_01</div>
+            <div>CH 03</div>
+          </div>
+          <div class="vhs-bottom-row">
+            <div>JUL 19 2017</div>
+            <div>PLAY ▶ 00:14:28</div>
+            <div>AUDIO: STEREO HI-FI</div>
+          </div>
+        </div>
+
+        <img 
+          class="hero-backdrop-img" 
+          src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80" 
+          alt="Mansión decrépita rodeada por niebla en los pantanos de Luisiana"
+        />
+
+        <div class="hero-content">
+          <span class="hero-tag">Expediente Clasificado • Dulvey, Luisiana</span>
+          <h2 class="hero-title">
+            Mansión Baker: <br>
+            <span class="title-accent">El Horror del Pantano</span>
+          </h2>
+          <p class="hero-subtitle">
+            «Si estás viendo esto... significa que Mia nunca salió de aquí.
+            Explora a los miembros de la familia Baker, sus trajes, las armas improvisadas y los secretos del Mutamiceto Serie-E.»
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn-re7 btn-bio-primary" id="btn-hero-explore" type="button" onclick="document.getElementById('catalogo-seccion').scrollIntoView({behavior: 'smooth'})">
+              <span>☣</span>
+              <span>Explorar Expedientes</span>
+            </button>
+            <a href="#vhs-section" class="btn-re7 btn-vhs-outline">
+              <span>📼</span>
+              <span>Ver Cintas VHS</span>
+            </a>
+            <button class="btn-re7 btn-danger-baker" id="btn-baker-punch" type="button" title="Experimentar el puñetazo de Jack Baker">
+              <span>👊</span>
+              <span>«¡Bienvenido a la Familia!»</span>
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ====================================================================
+           3. SECCIÓN DE CINTAS VHS INTERACTIVAS (METRAJE ENCONTRADO)
+           ==================================================================== -->
+      <section class="vhs-strip-section" id="vhs-section">
+        <div class="container">
+          <div class="vhs-strip-title">
+            <h3>📼 Cintas de Metraje Encontrado (Videocassettes)</h3>
+            <span>Haz clic en una cinta para reproducir su frecuencia</span>
+          </div>
+
+          <div class="vhs-tapes-grid">
+            
+            <div class="vhs-tape-card" onclick="playTapePrompt('Grabación de la Casa Derruida')">
+              <span class="tape-date">01 JUN 2017 • 23:40</span>
+              <h4 class="tape-name">Casa Derruida</h4>
+              <p class="tape-protagonist">Protagonista: Clancy Javis (Sewer Gators)</p>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">
+                El equipo de televisión de sucesos paranormales explora la mansión deshabitada antes de ser emboscados por Jack Baker.
+              </div>
+            </div>
+
+            <div class="vhs-tape-card" onclick="playTapePrompt('Mia')">
+              <span class="tape-date">03 AGO 2014 • 14:15</span>
+              <h4 class="tape-name">Mia</h4>
+              <p class="tape-protagonist">Protagonista: Mia Winters</p>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">
+                Mia se oculta desesperadamente entre las sombras y pasadizos de la Vieja Casa evitando la linterna de Marguerite.
+              </div>
+            </div>
+
+            <div class="vhs-tape-card" onclick="playTapePrompt('Feliz Cumpleaños')">
+              <span class="tape-date">10 SEP 2017 • 03:00</span>
+              <h4 class="tape-name">Feliz Cumpleaños</h4>
+              <p class="tape-protagonist">Protagonista: Clancy Javis</p>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">
+                El sádico juego de escape diseñado por Lucas donde un muñeco mecánico y una vela conducen a una trampa mortal de fuego.
+              </div>
+            </div>
+
+            <div class="vhs-tape-card" onclick="playTapePrompt('21 (Blackjack Mortal)')">
+              <span class="tape-date">11 SEP 2017 • 05:20</span>
+              <h4 class="tape-name">21: Apuesta Vital</h4>
+              <p class="tape-protagonist">Protagonista: Clancy vs Hoffman</p>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">
+                Una partida de cartas clandestina con descargas eléctricas y cuchillas mecánicas orquestada por el perverso Lucas Baker.
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           4. SECCIÓN DEL COMPENDIO: BUSCADOR, FILTROS Y TARJETAS
+           ==================================================================== -->
+      <section class="container" id="catalogo-seccion" style="padding-top: 1rem;">
+        
+        <div class="catalogue-header">
+          <span class="section-tag">Base de Datos Biohazard</span>
+          <h2 class="section-title">Expedientes de Dulvey</h2>
+        </div>
+
+        <!-- Barra de Búsqueda y Píldoras de Filtro -->
+        <div class="filter-toolbar">
+          <div class="search-box-wrap">
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input 
+              type="text" 
+              id="search-input" 
+              class="search-input" 
+              placeholder="Buscar por nombre, traje, arma o elemento (ej: Ethan, Jack, Motosierra, Suero, Chris)..." 
+              aria-label="Buscar en los expedientes"
+            />
+          </div>
+
+          <div class="filter-pills-row">
+            <div class="filter-group" role="tablist" aria-label="Filtro de categorías">
+              <button class="filter-pill active" data-filter="all" type="button">
+                Todos los Archivos
+              </button>
+              <button class="filter-pill" data-filter="characters" type="button">
+                👤 Personajes y Familia
+              </button>
+              <button class="filter-pill" data-filter="costumes" type="button">
+                👔 Trajes y Aspectos
+              </button>
+              <button class="filter-pill" data-filter="items" type="button">
+                🏺 Elementos e Ítems
+              </button>
+              <button class="filter-pill" data-filter="weapons" type="button">
+                💥 Armas y Herramientas
+              </button>
+            </div>
+
+            <div class="results-counter">
+              Mostrando <span id="items-count">16</span> registros analizados
+            </div>
+          </div>
+        </div>
+
+        <!-- Cuadrícula Dinámica (Inyectada vía JavaScript) -->
+        <div class="compendium-grid" id="compendium-grid">
+          <!-- Las tarjetas son generadas dinámicamente por re7-app.js -->
+        </div>
+
+      </section>
+
+      <!-- ====================================================================
+           5. SECCIÓN DE LORE BIOLÓGICO: EL MUTAMICETO (SERIE-E)
+           ==================================================================== -->
+      <section class="bio-lore-section" id="bio-lore">
+        <div class="container">
+          <div class="catalogue-header">
+            <span class="section-tag">Investigación B.O.W. de The Connections</span>
+            <h2 class="section-title">El Organismo Mutamiceto</h2>
+          </div>
+
+          <p class="lore-banner-text">
+            «Un hongo prehistórico descubierto en cuevas profundas con la capacidad de parasitar y reescribir la genética humana.
+            Desarrollado en secreto para crear armas biológicas con control mental absoluto.»
+          </p>
+
+          <div class="mutamycete-grid">
+            
+            <article class="mutamycete-card">
+              <div class="bio-icon" style="color: #70e000;">🧬</div>
+              <h4>Sujeto E-001 (Eveline)</h4>
+              <p>El primer espécimen perfecto capaz de segregar micotoxinas y controlar telepáticamente a los infectados que consumen el hongo.</p>
+            </article>
+
+            <article class="mutamycete-card">
+              <div class="bio-icon" style="color: #ffb703;">🧠</div>
+              <h4>Lavado de Cerebro y Alucinaciones</h4>
+              <p>Las víctimas experimentan psicosis progresiva, viéndose forzadas a percibir a Eveline como una hija adorable que exige obediencia ciega.</p>
+            </article>
+
+            <article class="mutamycete-card">
+              <div class="bio-icon" style="color: #d90429;">🦠</div>
+              <h4>Los Holomorfos (Molded)</h4>
+              <p>Cadáveres y biomasa fúngica amalgamada que adoptan forma bípeda con colmillos afilados, emergiendo de las paredes oscuras del sótano.</p>
+            </article>
+
+            <article class="mutamycete-card">
+              <div class="bio-icon" style="color: #00f5d4;">💉</div>
+              <h4>El Suero de la Serie-D</h4>
+              <p>Antídoto sintetizado a partir de los tejidos de embriones fallidos de la Serie D, capaz de calcinar y neutralizar la infección celular.</p>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ====================================================================
+         6. PIE DE PÁGINA (FOOTER)
+         ==================================================================== -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-biohazard" aria-hidden="true">☣</div>
+        <p class="footer-quote">«Go tell Aunt Rhody that everybody's dead...»</p>
+        <p class="footer-sub">
+          Archivo no oficial tributo a Resident Evil 7: Biohazard™, obra maestra del survival horror creada por CAPCOM.
+          Diseñado con fines pedagógicos para el estudio de narrativa, mecánicas y diseño web.
+        </p>
+        <div class="footer-copy">
+          <p>© 2026 Archivos de la Mansión Baker • Dulvey, Louisiana</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ====================================================================
+       7. MODAL DE INSPECCIÓN DETALLADA (EXPEDIENTE CONFIDENCIAL)
+       ==================================================================== -->
+  <div class="modal-overlay" id="lore-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-container">
+      
+      <button class="btn-modal-close" id="btn-close-modal" type="button" aria-label="Cerrar expediente">
+        ✕
+      </button>
+
+      <div class="modal-header-hero">
+        <img id="modal-hero-img" src="" alt="Detalle del informe">
+        <div class="modal-hero-gradient"></div>
+        <div class="modal-hero-content">
+          <div class="modal-tag" id="modal-tag">EXPEDIENTE CONFIDENCIAL</div>
+          <h3 class="modal-title" id="modal-title">Nombre del Sujeto</h3>
+          <span class="modal-subtitle" id="modal-subtitle">Epíteto o código de identificación</span>
+        </div>
+      </div>
+
+      <div class="modal-content-body">
+        
+        <div class="modal-quote-box" id="modal-quote">
+          «Cita o grabación de voz...»
+        </div>
+
+        <div>
+          <h4 class="modal-section-title">Análisis y Antecedentes</h4>
+          <p class="modal-lore-text" id="modal-lore-text">
+            Descripción y análisis clínico en los archivos de Dulvey.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="modal-section-title">Datos Biométricos y Combate</h4>
+          <div class="modal-stats-grid" id="modal-stats-container">
+            <!-- Rellenado dinámicamente -->
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-vhs);">
+          Presiona <kbd style="background: #111; border: 1px solid #38b000; padding: 2px 6px; border-radius: 3px; color: var(--toxic-bright);">Esc</kbd> para cerrar el informe
+        </span>
+        <button class="btn-re7 btn-vhs-outline" type="button" onclick="closeLoreModal()">
+          Cerrar Expediente
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       8. CINEMÁTICA: PUÑETAZO DE JACK BAKER
+       ==================================================================== -->
+  <div class="cinematic-screen" id="screen-baker-punch" role="alert" aria-label="Bienvenido a la familia">
+    <div class="banner-baker-punch">
+      <h2 class="text-baker-punch">¡BIENVENIDO A LA FAMILIA, HIJO!</h2>
+      <p class="subtext-baker-punch">Has sido noqueado por Jack Baker. Haz clic para recuperar el conocimiento.</p>
+    </div>
+  </div>
+
+  <!-- Lógica Interactiva JavaScript -->
+  <script src="re7-app.js"></script>
+</body>
+</html>

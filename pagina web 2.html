@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Enciclopedia y compendio interactivo del videojuego Dark Souls. Descubre la historia, lore, debilidades y atributos de personajes legendarios, jefes titánicos y artículos sagrados de Lordran.">
+  <meta name="keywords" content="Dark Souls, Lordran, Solaire de Astora, Artorias, Gwyn, Ornstein y Smough, Frasco de Estus, Humanidad, hoguera, videojuego, FromSoftware">
+  <meta name="author" content="Compendio de Lordran - Archivo de las Cenizas">
+  <title>DARK SOULS™ - Compendio de Lordran: Personajes, Jefes y Artículos</title>
+
+  <!-- Google Fonts: Tipografía Gótica Medieval y de Fantasía Oscura -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Estilos del Compendio -->
+  <link rel="stylesheet" href="darksouls-style.css">
+</head>
+<body>
+
+  <!-- Canvas Dinámico de Cenizas y Partículas de Hoguera -->
+  <canvas id="ember-canvas"></canvas>
+
+  <!-- Filtro de Viñeta Oscura y Niebla de Lordran -->
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-- Contenedor Principal de la Aplicación -->
+  <div class="app-wrapper">
+
+    <!-- ====================================================================
+         1. BARRA DE NAVEGACIÓN SUPERIOR CON HUD DE JUGADOR
+         ==================================================================== -->
+    <header class="main-navbar">
+      <div class="container navbar-inner">
+        
+        <!-- Logotipo / Emblema de la Señal Oscura -->
+        <a href="#hero-section" class="brand-wrapper" id="brand-link" title="Volver al inicio">
+          <div class="brand-darksign" aria-hidden="true"></div>
+          <div class="brand-text">
+            <h1>DARK SOULS</h1>
+            <span>El Compendio de Lordran</span>
+          </div>
+        </a>
+
+        <!-- Menú de Enlaces Rápidos -->
+        <nav class="nav-menu" aria-label="Navegación principal">
+          <a href="#hero-section" class="nav-link active">Inicio</a>
+          <a href="#catalogo-seccion" class="nav-link">Compendio</a>
+          <a href="#bonfire-widget" class="nav-link">La Hoguera</a>
+          <a href="#lore-seccion" class="nav-link">Almas de Señor</a>
+        </nav>
+
+        <!-- HUD Interactivo: Humanidad, Estado y Sonido -->
+        <div class="nav-hud">
+          <div class="hud-item hud-humanity" id="hud-humanity-widget" title="Haz clic para alternar entre Humano y Hueco (consume 1 Humanidad)">
+            <span class="hud-icon">🖤</span>
+            <span>Humanidad:</span>
+            <span class="humanity-counter" id="hud-humanity-count">10</span>
+            <span class="status-badge status-human" id="hud-status-badge">Humano</span>
+          </div>
+
+          <button class="btn-hud-audio" id="btn-audio-toggle" type="button" title="Activar/Silenciar efectos sonoros sintetizados">
+            <span>🔊</span>
+            <span>Sonido</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <main>
+      <!-- ====================================================================
+           2. SECCIÓN HERO: LA LLAMA ORIGINAL Y EL DESPERTAR DEL ELEGIDO
+           ==================================================================== -->
+      <section class="hero-section" id="hero-section">
+        <div class="hero-backdrop">
+          <img src="assets/ds_bonfire_hero.jpg" alt="Caballero descansando en la hoguera de una catedral gótica en ruinas">
+        </div>
+
+        <div class="hero-content">
+          <span class="hero-epigraph">Archivo de las Cenizas de Lordran</span>
+          <h2 class="hero-title">
+            En la Era de los Antiguos, <br>
+            <span class="title-accent">El Fuego Despertó</span>
+          </h2>
+          <p class="hero-subtitle">
+            «Y con el Fuego vino la disparidad. Calor y frío, vida y muerte, y por supuesto... Luz y Oscuridad.
+            Explora las leyendas, los titanes caídos y las reliquias que forjaron el destino del No Muerto Elegido.»
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn-ds btn-bonfire" id="btn-hero-bonfire" type="button">
+              <span>🔥</span>
+              <span>Descansar en la Hoguera</span>
+            </button>
+            <a href="#catalogo-seccion" class="btn-ds btn-outline-gold">
+              <span>📜</span>
+              <span>Explorar Compendio</span>
+            </a>
+            <button class="btn-ds btn-death-tester" id="btn-test-death" type="button" title="Experimentar la cinemática de HAS MUERTO">
+              <span>💀</span>
+              <span>Probar Muerte</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           3. WIDGET INTERACTIVO DE LA HOGUERA DE ENLACE DE FUEGO
+           ==================================================================== -->
+      <section class="bonfire-widget-strip" id="bonfire-widget" aria-label="Control de la Hoguera">
+        <div class="container bonfire-widget-content">
+          <div class="bonfire-info">
+            <div class="bonfire-flame-icon" aria-hidden="true">🔥</div>
+            <div class="bonfire-text">
+              <h3>Hoguera del Santuario de Enlace</h3>
+              <p>
+                Avivado: <strong id="bonfire-kindle-status" style="color: var(--gold-accent);">+1</strong> • 
+                Reserva de Estus: <strong id="bonfire-estus-count" style="color: var(--flame-yellow);">10 Frascos</strong>
+              </p>
+            </div>
+          </div>
+
+          <div class="bonfire-controls">
+            <button class="btn-ds btn-bonfire" id="btn-rest-bonfire" type="button" style="padding: 0.6rem 1.2rem; font-size: 0.8rem;">
+              <span>🔥</span> Descansar
+            </button>
+            <button class="btn-ds btn-outline-gold" id="btn-kindle-bonfire" type="button" style="padding: 0.6rem 1.2rem; font-size: 0.8rem;">
+              <span>🖤</span> Avivar (+5 Estus)
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           4. SECCIÓN DEL COMPENDIO: BUSCADOR, FILTROS Y TARJETAS
+           ==================================================================== -->
+      <section class="container" id="catalogo-seccion" style="padding-top: 1rem;">
+        
+        <div class="catalogue-header">
+          <span class="section-tag">Registros Primordiales</span>
+          <h2 class="section-title">El Compendio de las Almas</h2>
+        </div>
+
+        <!-- Barra de Búsqueda y Píldoras de Filtro -->
+        <div class="filter-toolbar">
+          <div class="search-box-wrap">
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input 
+              type="text" 
+              id="search-input" 
+              class="search-input" 
+              placeholder="Buscar por nombre, pacto, ubicación o descripción (ej: Solaire, Gwyn, Estus, Oolacile)..." 
+              aria-label="Buscar en el compendio"
+            />
+          </div>
+
+          <div class="filter-pills-row">
+            <div class="filter-group" role="tablist" aria-label="Filtro de categorías">
+              <button class="filter-pill active" data-filter="all" type="button">
+                Todos los Registros
+              </button>
+              <button class="filter-pill" data-filter="characters" type="button">
+                👤 Personajes y Aliados
+              </button>
+              <button class="filter-pill" data-filter="bosses" type="button">
+                ⚔️ Jefes Legendarios
+              </button>
+              <button class="filter-pill" data-filter="items" type="button">
+                🏺 Artículos y Reliquias
+              </button>
+            </div>
+
+            <div class="results-counter">
+              Mostrando <span id="items-count">24</span> entradas registradas
+            </div>
+          </div>
+        </div>
+
+        <!-- Cuadrícula Dinámica del Compendio (Inyectada vía JavaScript) -->
+        <div class="compendium-grid" id="compendium-grid">
+          <!-- Las tarjetas son generadas dinámicamente por darksouls-app.js -->
+        </div>
+
+      </section>
+
+      <!-- ====================================================================
+           5. SECCIÓN DE LORE: LAS CUATRO ALMAS DE SEÑOR DE LORDRAN
+           ==================================================================== -->
+      <section class="lore-section" id="lore-seccion">
+        <div class="container">
+          <div class="catalogue-header">
+            <span class="section-tag">El Mito de la Creación</span>
+            <h2 class="section-title">Las Grandes Almas de Señor</h2>
+          </div>
+
+          <p class="lore-banner-text">
+            «De la oscuridad llegaron, y hallaron las Almas de Señor dentro de la Primera Llama.
+            Cuatro seres reclamaron los pilares de la existencia antes de desafiar la tiranía de los dragones pétreos.»
+          </p>
+
+          <div class="lord-souls-grid">
+            
+            <article class="lord-soul-card">
+              <div class="soul-icon" style="color: #a569bd;">💀</div>
+              <h4>Nito, Primero de los Muertos</h4>
+              <p>Reclamó el Alma de la Muerte. Administrador de la decadencia y el reposo sepulcral en el lecho de la roca madre.</p>
+            </article>
+
+            <article class="lord-soul-card">
+              <div class="soul-icon" style="color: #e67e22;">🔥</div>
+              <h4>La Bruja de Izalith</h4>
+              <p>Reclamó el Alma de la Vida. Maestra de la piromancia primitiva que con sus Hijas del Caos tejió tempestades de fuego.</p>
+            </article>
+
+            <article class="lord-soul-card">
+              <div class="soul-icon" style="color: #f1c40f;">⚡</div>
+              <h4>Gwyn, Señor de la Luz Solar</h4>
+              <p>Reclamó el Alma de la Luz. Líder de los dioses de Anor Londo que desgarró las escamas de los dragones con arcos de relámpago.</p>
+            </article>
+
+            <article class="lord-soul-card">
+              <div class="soul-icon" style="color: #7f8c8d;">🌑</div>
+              <h4>El Pigmeo Furtivo</h4>
+              <p>Reclamó el Alma Oscura (Dark Soul). Fácilmente olvidado por los dioses, fragmentó su alma entre los hombres creando la Humanidad.</p>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ====================================================================
+         6. PIE DE PÁGINA (FOOTER)
+         ==================================================================== -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-darksign" aria-hidden="true">☀️</div>
+        <p class="footer-quote">«Que las llamas de la hoguera guíen siempre tu peregrinación.»</p>
+        <p class="footer-sub">
+          Tributo al legendario universo de Dark Souls™ creado por FromSoftware y Hidetaka Miyazaki.
+          Diseñado para el estudio de mitología, mecánicas y diseño de videojuegos.
+        </p>
+        <div class="footer-copy">
+          <p>© 2026 Compendio de Lordran • ¡Alabado sea el Sol! [T]</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ====================================================================
+       7. MODAL DE INSPECCIÓN DETALLADA (EL GRIMORIO DE LORE)
+       ==================================================================== -->
+  <div class="modal-overlay" id="lore-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-container">
+      
+      <button class="btn-modal-close" id="btn-close-modal" type="button" aria-label="Cerrar modal de información">
+        ✕
+      </button>
+
+      <div class="modal-header-hero">
+        <img id="modal-hero-img" src="" alt="Detalle del compendio">
+        <div class="modal-hero-gradient"></div>
+        <div class="modal-hero-content">
+          <div class="modal-tag" id="modal-tag">CATEGORÍA</div>
+          <h3 class="modal-title" id="modal-title">Nombre del Objeto</h3>
+          <span class="modal-subtitle" id="modal-subtitle">Epíteto o título honorífico</span>
+        </div>
+      </div>
+
+      <div class="modal-content-body">
+        
+        <div class="modal-quote-box" id="modal-quote">
+          «Cita o diálogo emblemático...»
+        </div>
+
+        <div>
+          <h4 class="modal-section-title">Crónica y Lore Profundo</h4>
+          <p class="modal-lore-text" id="modal-lore-text">
+            Descripción y trasfondo histórico dentro de las crónicas de Lordran.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="modal-section-title">Atributos y Estadísticas Clave</h4>
+          <div class="modal-stats-grid" id="modal-stats-container">
+            <!-- Rellenado dinámicamente -->
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <span style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-serif);">
+          Presiona <kbd style="background: #222; border: 1px solid #444; padding: 2px 6px; border-radius: 3px; color: var(--gold-accent);">Esc</kbd> para volver al archivo
+        </span>
+        <button class="btn-ds btn-outline-gold" type="button" onclick="closeLoreModal()">
+          Cerrar Registro
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       8. PANTALLAS CINEMÁTICAS A PANTALLA COMPLETA
+       ==================================================================== -->
+  
+  <!-- Cinemática: HAS MUERTO (YOU DIED) -->
+  <div class="cinematic-screen" id="screen-you-died" role="alert" aria-label="Has Muerto">
+    <div class="banner-you-died">
+      <h2 class="text-you-died">HAS MUERTO</h2>
+      <p class="subtext-you-died">Haz clic en cualquier lugar para renacer junto a la hoguera</p>
+    </div>
+  </div>
+
+  <!-- Cinemática: HOGUERA ENCENDIDA (BONFIRE LIT) -->
+  <div class="cinematic-screen" id="screen-bonfire-lit" role="alert" aria-label="Hoguera Encendida">
+    <div class="banner-bonfire-lit">
+      <h2 class="text-bonfire-lit">HOGUERA ENCENDIDA</h2>
+      <p class="subtext-bonfire-lit">Tus heridas sanan y la llama reaviva tu cordura</p>
+    </div>
+  </div>
+
+  <!-- Lógica Interactiva JavaScript -->
+  <script src="darksouls-app.js"></script>
+</body>
+</html>

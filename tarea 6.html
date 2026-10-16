@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ejercicio 6</title>
+    <meta charset="UTF-8">
+    <title>Formulario de Acceso</title>
+    <link rel="stylesheet" href="tarea.css">
 </head>
+
 <body>
 
-  <h2>Multimedia HTML5</h2>
+    <h2>Iniciar Sesión</h2>
 
-  <figure>
-    <img 
-      src="https://www.shutterstock.com/image-photo/reykjavik-capital-city-iceland-winter-260nw-2519749195.jpg" 
-      alt="Un paisaje de un pueblo de Islandia en Invierno" 
-      loading="lazy"
-    >
-    <figcaption>Noche de invierno en Reykjavik, Islandia</figcaption>
-  </figure>
+    <form>
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" class="campo">
 
-  <audio controls>
-    <source src="andriig-soft-soft-music-566911.mp3" type="audio/mpeg">
-    Tu navegador no soporta la reproducción de audio HTML5.
-  </audio>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" class="campo">
+
+        <button type="submit" class="boton">Ingresar</button>
+    </form>
 
 </body>
+
 </html>
